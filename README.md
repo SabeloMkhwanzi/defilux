@@ -75,11 +75,3 @@ yarn dev
 ```
 
 Happy Hacking!😊
-
-<<<<<<< HEAD
-## Defilux - A Cross-chain DEFI DAPP that enhance the simple experience for use to find the perfect price for token bridge.
-
-# defilux
-=======
-### Defilux 
->>>>>>> b1d1ee6545d318deaba27670b74d62005e31a16a
