@@ -2,15 +2,13 @@
 
 ### Challenge Description
 
-####
-
 <!-- [link to hackathon](https://gitcoin.co/issue/ipfs-and-filecoin/hackathons-bounties/6/100028834) -->
 
 ### Defilux - A Cross-Chain Defi Price Quote DApp
 
 ### Project Description
 
-- DefiTool - A Cross-chain DEFI DAPP that enhance the simple experience for use to find the perfect price for token bridge.
+- DefiTool - A Cross-chain Defi DApp that enhances a great UX experience to help provide the best price quotation for swaps, bridges and token transfers.
 
 ### Project Concept
 
@@ -79,4 +77,5 @@ yarn dev
 Happy Hacking!😊
 
 ## Defilux - A Cross-chain DEFI DAPP that enhance the simple experience for use to find the perfect price for token bridge.
+
 # defilux
