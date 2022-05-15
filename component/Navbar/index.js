@@ -3,10 +3,6 @@ import {
   chakra,
   HStack,
   Link,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  Box,
   Flex,
   IconButton,
   useColorModeValue,
@@ -15,14 +11,11 @@ import {
   VStack,
   Button,
   useColorMode,
-  SimpleGrid,
-  Stack,
   Text,
   Spacer,
 } from "@chakra-ui/react";
 import { useViewportScroll } from "framer-motion";
 
-import { IoIosArrowDown } from "react-icons/io";
 import { AiFillHome, AiOutlineInbox, AiOutlineMenu } from "react-icons/ai";
 import { BsFillCameraVideoFill } from "react-icons/bs";
 import { FaMoon, FaSun } from "react-icons/fa";
@@ -33,10 +26,13 @@ function Navbar() {
   const { toggleColorMode: toggleMode } = useColorMode();
   const text = useColorModeValue("dark", "light");
   const SwitchIcon = useColorModeValue(FaMoon, FaSun);
-  const BgNarbar = useColorModeValue("purple.800", "gray.900");
+  const BgNarbar = useColorModeValue("blue.500", "gray.900");
   const ref = React.useRef();
   const [y, setY] = React.useState(0);
   const { height = 0 } = ref.current ? ref.current.getBoundingClientRect() : {};
+
+  // Color mode hooks
+  const ButtonColorMode1 = useColorModeValue("gray.600", "#303E46");
 
   const { scrollY } = useViewportScroll();
   React.useEffect(() => {
@@ -87,7 +83,7 @@ function Navbar() {
     <React.Fragment>
       <chakra.header
         ref={ref}
-        shadow={y > height ? "sm" : undefined}
+        shadow="xl"
         transition="box-shadow 0.2s"
         bg={BgNarbar}
         borderTopColor="brand.400"
@@ -114,7 +110,7 @@ function Navbar() {
                   borderRadius="2xl"
                   w="full"
                   variant="outlne"
-                  color="white"
+                  color="#EEEEEE"
                 >
                   <Link href="/">
                     <Text letterSpacing={3}>Bridge Quote</Text>
@@ -124,7 +120,7 @@ function Navbar() {
                   borderRadius="2xl"
                   w="full"
                   variant="outlne"
-                  color="white"
+                  color="#EEEEEE"
                 >
                   <Link href="/">
                     <Text letterSpacing={3}>Home</Text>
@@ -134,7 +130,7 @@ function Navbar() {
                   borderRadius="2xl"
                   w="full"
                   variant="outlne"
-                  color="white"
+                  color="#EEEEEE"
                 >
                   <Link href="/">
                     <Text letterSpacing={3}>Home</Text>
@@ -146,7 +142,7 @@ function Navbar() {
             <Flex justify="flex-end" align="center" color="gray.400">
               <HStack spacing="5" display={{ base: "none", md: "flex" }}>
                 <Button
-                  colorScheme="purple"
+                  colorScheme="#EEEEEE"
                   variant="solid"
                   w="4xs"
                   display="flex"
@@ -154,19 +150,20 @@ function Navbar() {
                   justifyContent="center"
                   fontSize={{ base: "md", md: "lg" }}
                   cursor="pointer"
+                  color="#EEEEEE"
                 >
                   Sign in
                 </Button>
                 <Button
-                  c
-                  colorScheme="blue"
-                  variant="outline"
+                  color="blue.300"
                   w="4xs"
+                  bg={ButtonColorMode1}
                   display="flex"
                   alignItems="center"
                   justifyContent="center"
                   fontSize={{ base: "md", md: "lg" }}
                   cursor="pointer"
+                  shadow="xl"
                 >
                   Connect Wallet
                 </Button>
