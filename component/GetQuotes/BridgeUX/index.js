@@ -47,14 +47,13 @@ export default function BridgeUX({ getQuotes }) {
           {/* from Chain & from Chain Id   */}
 
           <Box
-            borderColor=""
             borderWidth={0}
             maxWidth={600}
             borderRadius="2xl"
             px={7}
             py={7}
+            my="3%"
             mx="auto"
-            my="10%"
             bgColor={BridgeUX}
             shadow="2xl"
           >
@@ -84,15 +83,15 @@ export default function BridgeUX({ getQuotes }) {
                 height={12}
                 borderRadius="xl"
                 borderColor={ButtonBorderColorMode1}
-                name="fromchain"
-                type={("number", "text")}
+                name="Ethereum"
+                type="text"
                 bg={ButtonColorMode1}
                 shadow="lg"
                 color={InputTextColorMode}
                 fontWeight="bold"
                 fontSize="large"
               >
-                <option name="fromchain" value={("Ethereum", "1")}>
+                <option name="Ethereum" value="Ethereum">
                   Ethereum
                 </option>
                 <option name="polygon" value="137">
