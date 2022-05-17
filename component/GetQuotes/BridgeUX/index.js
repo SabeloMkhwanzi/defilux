@@ -19,7 +19,6 @@ import {
   Avatar,
   Image,
 } from "@chakra-ui/react";
-
 import { useForm } from "react-hook-form";
 
 export default function BridgeUX({ getQuotes }) {
@@ -83,7 +82,7 @@ export default function BridgeUX({ getQuotes }) {
                 height={12}
                 borderRadius="xl"
                 borderColor={ButtonBorderColorMode1}
-                name="Ethereum"
+                name="FROM_CHAIN"
                 type="text"
                 bg={ButtonColorMode1}
                 shadow="lg"
@@ -91,7 +90,7 @@ export default function BridgeUX({ getQuotes }) {
                 fontWeight="bold"
                 fontSize="large"
               >
-                <option name="Ethereum" value="Ethereum">
+                <option name="Ethereum" value="1">
                   Ethereum
                 </option>
                 <option name="polygon" value="137">
@@ -145,26 +144,42 @@ export default function BridgeUX({ getQuotes }) {
                 fontWeight="bold"
                 fontSize="large"
               >
-                <option name="chainId" value="1">
-                  Ethereum
+                <option
+                  name="ETH"
+                  value="0x64ff637fb478863b7468bc97d30a5bf3a428a1fd"
+                >
+                  ETH
                 </option>
-                <option name="chainId" value="137">
-                  Polygon
+                <option
+                  name="USDC"
+                  value="0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+                >
+                  USDC
                 </option>
-                <option name="chainId" value="43114">
-                  Avalanche
+                <option
+                  name="USDT"
+                  value="0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+                >
+                  USDT
                 </option>
-                <option name="chainId" value="56">
-                  Binance
+                <option
+                  name="DAI"
+                  value="0x6b175474e89094c44da98b954eedeac495271d0f"
+                >
+                  DAI
                 </option>
-                <option name="chainId" value="1284">
-                  Moonbeam
+
+                <option
+                  name="AVAX"
+                  value="0x1ce0c2827e2ef14d5c4f29a091d735a204794041"
+                >
+                  AVAX
                 </option>
-                <option name="chainId" value="42161">
-                  Arbitrum
-                </option>
-                <option name="chainId" value="250">
-                  Fantom
+                <option
+                  name="MATIC"
+                  value="0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0"
+                >
+                  MATIC
                 </option>
               </Select>
             </Stack>
@@ -194,25 +209,25 @@ export default function BridgeUX({ getQuotes }) {
                   fontWeight="bold"
                   fontSize="large"
                 >
-                  <option name="chainId" value="1">
+                  <option name="Ethereum" value="1">
                     Ethereum
                   </option>
-                  <option name="chainId" value="137">
+                  <option name="polygon" value="137">
                     Polygon
                   </option>
-                  <option name="chainId" value="43114">
+                  <option name="avalanche" value="43114">
                     Avalanche
                   </option>
-                  <option name="chainId" value="56">
+                  <option name="bsc" value="56">
                     Binance
                   </option>
-                  <option name="chainId" value="1284">
+                  <option name="moonbeam" value="1284">
                     Moonbeam
                   </option>
-                  <option name="chainId" value="42161">
+                  <option name="arbitrum" value="42161">
                     Arbitrum
                   </option>
-                  <option name="chainId" value="250">
+                  <option name="fantom" value="250">
                     Fantom
                   </option>
                 </Select>
@@ -220,49 +235,11 @@ export default function BridgeUX({ getQuotes }) {
                 <Input
                   bg={InputBgColorMode}
                   variant="filled"
-                  placeholder={value}
+                  // placeholder={value}
                   height={12}
                 />
-                {/* <Text mb="8px">Value: {value}</Text> */}
 
                 {/* to Token Symbol  */}
-
-                <Select
-                  textAlign="center"
-                  maxW={150}
-                  borderColor={ButtonBorderColorMode1}
-                  name="chainId"
-                  type="number"
-                  bg={ButtonColorMode1}
-                  shadow="lg"
-                  color={InputTextColorMode}
-                  height={12}
-                  borderRadius="xl"
-                  fontWeight="bold"
-                  fontSize="large"
-                >
-                  <option name="chainId" value="1">
-                    Ethereum
-                  </option>
-                  <option name="chainId" value="137">
-                    Polygon
-                  </option>
-                  <option name="chainId" value="43114">
-                    Avalanche
-                  </option>
-                  <option name="chainId" value="56">
-                    Binance
-                  </option>
-                  <option name="chainId" value="1284">
-                    Moonbeam
-                  </option>
-                  <option name="chainId" value="42161">
-                    Arbitrum
-                  </option>
-                  <option name="chainId" value="250">
-                    Fantom
-                  </option>
-                </Select>
               </Stack>
               <Button
                 left="78%"
