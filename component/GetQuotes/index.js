@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Box, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import BridgeUX from "./BridgeUX";
 import QuoteResult from "./QuotesResults";
 import { formatParams } from "utils";
@@ -8,6 +8,7 @@ import { formatParams } from "utils";
 function GetQuotes() {
   const [items, setItems] = useState([]);
   console.log(items);
+
   const [params, setParams] = useState({
     fromUserAddress: "0xF975206a46b4eD9f5F008AF9813B19bf083d94eE",
     fromChain: "ethereum",
@@ -48,7 +49,7 @@ function GetQuotes() {
   return (
     <Box>
       <Box>
-        <BridgeUX getQuotes={getQuotes} setParams={setParams} />
+        <BridgeUX getQuotes={getQuotes} params={params} setParams={setParams} />
         <QuoteResult data={items} />
       </Box>
 

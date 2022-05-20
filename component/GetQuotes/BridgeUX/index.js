@@ -12,7 +12,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-export default function BridgeUX({ getQuotes, setParams }) {
+export default function BridgeUX({ getQuotes, params, setParams }) {
   const InputBgColorMode = useColorModeValue("blue.100", "gray.700");
   const InputTextColorMode = useColorModeValue("gray.900", "white");
   const ButtonColorMode1 = useColorModeValue("gray.500", "#303E46");
@@ -49,6 +49,7 @@ export default function BridgeUX({ getQuotes, setParams }) {
               placeholder="Enter Address  0x.."
               mx="auto"
               color={TextInputColorMode}
+              value={params.fromUserAddress}
               onChange={({ target }) =>
                 setParams((prev) => ({
                   ...prev,
@@ -81,6 +82,7 @@ export default function BridgeUX({ getQuotes, setParams }) {
                 color={InputTextColorMode}
                 fontWeight="bold"
                 fontSize="large"
+                value={params.fromChainId}
                 onChange={({ target }) =>
                   setParams((prev) => ({
                     ...prev,
@@ -121,6 +123,7 @@ export default function BridgeUX({ getQuotes, setParams }) {
                   bg={InputBgColorMode}
                   height={12}
                   name="tokenAmount"
+                  value={params.tokenAmount}
                   onChange={({ target }) =>
                     setParams((prev) => ({
                       ...prev,
@@ -150,6 +153,7 @@ export default function BridgeUX({ getQuotes, setParams }) {
                 color={InputTextColorMode}
                 fontWeight="bold"
                 fontSize="large"
+                value={params.fromTokenAddress}
                 onChange={({ target }) =>
                   setParams((prev) => ({
                     ...prev,
@@ -223,6 +227,7 @@ export default function BridgeUX({ getQuotes, setParams }) {
                   borderRadius="xl"
                   fontWeight="bold"
                   fontSize="large"
+                  value={params.toChainId}
                   onChange={({ target }) =>
                     setParams((prev) => ({
                       ...prev,
