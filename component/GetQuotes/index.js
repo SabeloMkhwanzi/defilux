@@ -1,65 +1,55 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Box, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import BridgeUX from "./BridgeUX";
 import QuoteResult from "./QuotesResults";
-
-// Interface data
-const TOKEN_SYMBOL = "DAI";
-const FROM_TOKEN_ADDRESS = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
-
-const TOKEN_AMOUNT = 10000;
-
-const FROM_CHAIN = "ethereum";
-const FROM_CHAIN_ID = 1;
-
-const TO_CHAIN = "polygon";
-const TO_CHAIN_ID = 137;
-
-const FROM_USER_ADDRESS = "0xF975206a46b4eD9f5F008AF9813B19bf083d94eE";
+import { formatParams } from "utils";
 
 function GetQuotes() {
   const [items, setItems] = useState([]);
-  const InputTextColorMode = useColorModeValue("gray.900", "white");
+  console.log(items);
+
+  const [params, setParams] = useState({
+    fromUserAddress: "0xF975206a46b4eD9f5F008AF9813B19bf083d94eE",
+    fromChain: "ethereum",
+    fromChainId: 1,
+    tokenAmount: 10000,
+    tokenSymbol: "USDT",
+    fromTokenAddress: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    toChain: "polygon",
+    toChainId: 137,
+  });
+
+  const getQuotes = async (e) => {
+    e?.preventDefault();
+
+    try {
+      const { data } = await axios.get(
+        `https://swap.dev.swing.xyz/v0/transfer/quote?${formatParams(params)}`
+      );
+      const items = data.routes?.map((item) => ({
+        duration: item?.duration,
+        amount: item?.quote?.amount,
+        bridgeFee: item?.quote?.bridgeFee,
+        bridge: item?.route[0]?.bridge,
+      }));
+
+      return setItems(items);
+    } catch (error) {
+      console.error(error);
+      return setItems([]);
+    }
+  };
 
   useEffect(() => {
     getQuotes();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getQuotes = async (e) => {
-    //Using fetch
-    // const FROM_CHAIN = e.target.elements.FROM_CHAIN.value;
-    // e.preventDefault();
-
-    // const FROM_CHAIN_ID = e.target.elements.FROM_CHAIN_ID.value;
-    // e.preventDefault();
-
-    // const FROM_USER_ADDRESS = e.target.elements.FROM_USER_ADDRESS.value;
-    // e.preventDefault();
-
-    const response = await axios.get(
-      `https://swap.dev.swing.xyz/v0/transfer/quote?tokenSymbol=${TOKEN_SYMBOL}&tokenAmount=${TOKEN_AMOUNT}&fromTokenAddress=${FROM_TOKEN_ADDRESS}&fromChain=${FROM_CHAIN}&fromChainId=${FROM_CHAIN_ID}&toChain=${TO_CHAIN}&toChainId=${TO_CHAIN_ID}&fromUserAddress=${FROM_USER_ADDRESS}`,
-      // `https://swap.dev.swing.xyz/v0/transfer/quote?tokenSymbol=${TOKEN_SYMBOL}&tokenAmount=${TOKEN_AMOUNT}&fromTokenAddress=${FROM_TOKEN_ADDRESS}&fromChain=${FROM_CHAIN}&fromChainId=${FROM_CHAIN_ID}&toChain=${TO_CHAIN}&toChainId=${TO_CHAIN_ID}&fromUserAddress=${FROM_USER_ADDRESS}`,
-
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    // console.log(response.data);
-    setItems(response.data);
-
-    console.log(items);
-  };
-
   return (
     <Box>
       <Box>
-        {console.log(items)}
-        <BridgeUX getQuotes={getQuotes} />
+        <BridgeUX getQuotes={getQuotes} params={params} setParams={setParams} />
         <QuoteResult data={items} />
       </Box>
 
