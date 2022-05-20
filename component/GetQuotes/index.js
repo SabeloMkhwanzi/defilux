@@ -7,6 +7,7 @@ import { formatParams } from "utils";
 
 function GetQuotes() {
   const [items, setItems] = useState([]);
+  console.log(items);
   const [params, setParams] = useState({
     fromUserAddress: "0xF975206a46b4eD9f5F008AF9813B19bf083d94eE",
     fromChain: "ethereum",
@@ -47,7 +48,7 @@ function GetQuotes() {
   return (
     <Box>
       <Box>
-        <BridgeUX getQuotes={getQuotes} />
+        <BridgeUX getQuotes={getQuotes} setParams={setParams} />
         <QuoteResult data={items} />
       </Box>
 
