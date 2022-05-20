@@ -8,14 +8,14 @@ import { formatParams } from "utils";
 function GetQuotes() {
   const [items, setItems] = useState([]);
   const [params, setParams] = useState({
-    tokenSymbol: "DAI",
-    fromTokenAddress: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
-    tokenAmount: 10000,
+    fromUserAddress: "0xF975206a46b4eD9f5F008AF9813B19bf083d94eE",
     fromChain: "ethereum",
     fromChainId: 1,
+    tokenAmount: 10000,
+    tokenSymbol: "USDT",
+    fromTokenAddress: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
     toChain: "polygon",
     toChainId: 137,
-    fromUserAddress: "0xF975206a46b4eD9f5F008AF9813B19bf083d94eE",
   });
 
   const getQuotes = async (e) => {

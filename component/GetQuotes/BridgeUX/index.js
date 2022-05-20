@@ -21,12 +21,7 @@ import {
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 
-export default function BridgeUX({
-  getQuotes,
-  handleFromChainChange,
-  handleTokenChange,
-  handleToChainChange,
-}) {
+export default function BridgeUX({ getQuotes, setParams }) {
   const [value, setValue] = React.useState("");
   const handleChange = (event) => setValue(event.target.value);
 
@@ -87,14 +82,14 @@ export default function BridgeUX({
                 height={12}
                 borderRadius="xl"
                 borderColor={ButtonBorderColorMode1}
-                name="FROM_CHAIN"
+                name="fromChain"
                 type="text"
                 bg={ButtonColorMode1}
                 shadow="lg"
                 color={InputTextColorMode}
                 fontWeight="bold"
                 fontSize="large"
-                onChange={handleFromChainChange}
+                onChange={setParams}
               >
                 <option name="Ethereum" value="1">
                   Ethereum
@@ -127,6 +122,7 @@ export default function BridgeUX({
                   onChange={handleChange}
                   bg={InputBgColorMode}
                   height={12}
+                  name="tokenAmount"
                 />
                 <InputRightElement width="4.5rem">
                   <Button bg={BridgeUX} h="2rem" mt="auto" size="md">
@@ -142,14 +138,14 @@ export default function BridgeUX({
                 height={12}
                 borderRadius="xl"
                 borderColor={ButtonBorderColorMode1}
-                name="chainId"
+                name="tokenSymbol"
                 type="number"
                 bg={ButtonColorMode1}
                 shadow="lg"
                 color={InputTextColorMode}
                 fontWeight="bold"
                 fontSize="large"
-                onChange={handleTokenChange}
+                onChange={setParams}
               >
                 <option
                   name="ETH"
@@ -206,7 +202,7 @@ export default function BridgeUX({
                   textAlign="center"
                   maxW={150}
                   borderColor={ButtonBorderColorMode1}
-                  name="chainId"
+                  name="toChain"
                   type="number"
                   bg={ButtonColorMode1}
                   shadow="lg"
@@ -215,7 +211,7 @@ export default function BridgeUX({
                   borderRadius="xl"
                   fontWeight="bold"
                   fontSize="large"
-                  onChange={handleToChainChange}
+                  onChange={setParams}
                 >
                   <option name="Ethereum" value="1">
                     Ethereum
