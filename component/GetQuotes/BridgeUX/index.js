@@ -21,7 +21,12 @@ import {
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 
-export default function BridgeUX({ getQuotes }) {
+export default function BridgeUX({
+  getQuotes,
+  handleFromChainChange,
+  handleTokenChange,
+  handleToChainChange,
+}) {
   const [value, setValue] = React.useState("");
   const handleChange = (event) => setValue(event.target.value);
 
@@ -89,6 +94,7 @@ export default function BridgeUX({ getQuotes }) {
                 color={InputTextColorMode}
                 fontWeight="bold"
                 fontSize="large"
+                onChange={handleFromChainChange}
               >
                 <option name="Ethereum" value="1">
                   Ethereum
@@ -143,6 +149,7 @@ export default function BridgeUX({ getQuotes }) {
                 color={InputTextColorMode}
                 fontWeight="bold"
                 fontSize="large"
+                onChange={handleTokenChange}
               >
                 <option
                   name="ETH"
@@ -208,6 +215,7 @@ export default function BridgeUX({ getQuotes }) {
                   borderRadius="xl"
                   fontWeight="bold"
                   fontSize="large"
+                  onChange={handleToChainChange}
                 >
                   <option name="Ethereum" value="1">
                     Ethereum
