@@ -3,13 +3,7 @@ import axios from "axios";
 import { Box, Text, useColorModeValue } from "@chakra-ui/react";
 import BridgeUX from "./BridgeUX";
 import QuoteResult from "./QuotesResults";
-
-const formatParams = (params) =>
-  Object.keys(params)
-    .map(
-      (key) => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`
-    )
-    .join("&");
+import { formatParams } from "utils";
 
 function GetQuotes() {
   const [items, setItems] = useState([]);
@@ -41,6 +35,7 @@ function GetQuotes() {
       return setItems(items);
     } catch (error) {
       console.error(error);
+      return setItems([]);
     }
   };
 
