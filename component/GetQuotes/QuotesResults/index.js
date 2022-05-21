@@ -1,5 +1,13 @@
 import React from "react";
-import { Box, useColorModeValue, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  useColorModeValue,
+  Stack,
+  Text,
+  chakra,
+  Flex,
+  SimpleGrid,
+} from "@chakra-ui/react";
 
 export default function QuoteResult(items) {
   const BridgeUX = useColorModeValue("blue.500", "blue.500");
@@ -8,82 +16,120 @@ export default function QuoteResult(items) {
   const InputTextColorMode = useColorModeValue("gray.900", "white");
   const ChainTextColorMode = useColorModeValue("blue.500", "blue.500");
 
+  const formatCash = (n) => {
+    if (n < 1e3) return n;
+    if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1);
+    if (n >= 1e6 && n < 1e9) return +(n / 1e6).toFixed(1);
+    if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1);
+    if (n >= 1e12) return +(n / 1e12).toFixed(1);
+  };
+
+  var formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
+
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   return (
     <Box
-      borderColor=""
       borderWidth={0}
-      maxWidth={800}
+      maxWidth="600"
       borderRadius="2xl"
       px={2}
       py={2}
-      mx="auto"
+      mx="10%"
       bgColor={BridgeUX}
       shadow="2xl"
     >
-      <Box mx={3} mb={2}>
-        <Text color={InputTextColorMode} fontWeight="bold" fontSize="large">
-          Bridge name:
-        </Text>
-      </Box>
-
-      <Stack direction="row" justifyContent="space-around">
-        <Box
-          justifyContent="center"
-          bg={InputBgColorMode}
-          maxW={400}
-          color={TextInputColorMode}
-          borderRadius="2xl"
-          px={2}
-          py={2}
-        >
-          From Chain
-          <Text color={InputTextColorMode} fontWeight="bold" fontSize="large">
-            Token Symbol
-          </Text>
-          <Text>Amount:</Text>
-          <Text
-            color={ChainTextColorMode}
+      <Stack
+        direction={{ base: "column" }}
+        maxWidth="600"
+        bg={BridgeUX}
+        shadow="lg"
+        borderRadius={20}
+      >
+        return (
+        <Flex direction={{ base: "row", md: "column" }}>
+          <SimpleGrid
+            textAlign="center"
+            spacingY={4}
+            columns={[1, null, 3]}
+            w={{ base: 120, md: "full" }}
+            textTransform="uppercase"
+            bg={BridgeUX}
+            color={"gray.100"}
+            py={{ base: 1, md: 5 }}
+            px={{ base: 2, md: 10 }}
             fontSize="lg"
-            fontWeight="bold"
-            pt={3}
+            fontWeight="semibold"
           >
-            Chain
-          </Text>
-        </Box>
+            <span>Bridge </span>
+            <span>Amount</span>
+            {/* <span>bridge Fees</span> */}
+            <span>duration</span>
+          </SimpleGrid>
 
-        <Box>
-          <Text></Text>
-          <Text color={InputTextColorMode} fontWeight="bold" fontSize="large">
-            Fees
-          </Text>
-          <Text color={InputTextColorMode} fontWeight="bold" fontSize="large">
-            duration ~ 10 minutes
-          </Text>
-        </Box>
-
-        <Box
-          justifyContent="center"
-          bg={InputBgColorMode}
-          maxW={400}
-          color={TextInputColorMode}
-          borderRadius="2xl"
-          px={2}
-          py={2}
-        >
-          To Chain
-          <Text color={InputTextColorMode} fontWeight="bold" fontSize="large">
-            Token Symbol:{" "}
-          </Text>
-          <Text>Amount</Text>
-          <Text
-            color={ChainTextColorMode}
-            fontSize="lg"
-            fontWeight="bold"
-            pt={3}
-          >
-            Chain
-          </Text>
-        </Box>
+          {items.data?.map((item) => (
+            <>
+              <SimpleGrid
+                my={3}
+                textAlign="center"
+                spacingX={4}
+                borderRadius="lg"
+                spacingY={4}
+                columns={[1, null, 3]}
+                w={{ base: 120, md: "full" }}
+                textTransform="uppercase"
+                bg={InputBgColorMode}
+                color={"gray.100"}
+                py={{ base: 1, md: 4 }}
+                px={{ base: 2, md: 10 }}
+                fontSize="md"
+                fontWeight="normal"
+                key={item.bridge}
+                justifyContent="center"
+                as="button"
+              >
+                <Stack direction="row" bg={InputBgColorMode}>
+                  <Text textAlign="center" isTruncated fontSize="lg">
+                    {item.bridge}
+                  </Text>
+                </Stack>
+                <chakra.span
+                  textOverflow="ellipsis"
+                  overflow="hidden"
+                  whiteSpace="nowrap"
+                >
+                  {item.amount
+                    ? formatter.format(item.amount).split(".")[0]
+                    : "null"}
+                </chakra.span>
+                {/* <chakra.span
+                  textOverflow="ellipsis"
+                  overflow="hidden"
+                  whiteSpace="nowrap"
+                >
+                  <Text color="red.500" fontSize="lg" isTruncated>
+                    {item.bridgeFee
+                      ? formatter.format(item.bridgeFee).split(".")[0]
+                      : "null"}
+                  </Text>
+                </chakra.span> */}
+                <chakra.span
+                  textOverflow="ellipsis"
+                  overflow="hidden"
+                  whiteSpace="nowrap"
+                  color="green.500"
+                >
+                  {item.duration} ~ 10 min
+                </chakra.span>
+              </SimpleGrid>
+            </>
+          ))}
+        </Flex>
       </Stack>
     </Box>
   );

@@ -19,6 +19,15 @@ And components of Defi are stablecoins, software, and hardware that enables the 
 
 In this hackathon, I'm be contributing to by building a Defi tooling DApp that provides price quotes for swaps, bridges, and token transfers, by using the products and tools that have been developed by sponsors in this hackathon:
 
+Here's our team's second check-in!
+
+**Name**: DEFILUX
+**Description**: A Cross-chain Defi DApp that enhances a great UX experience to help providing the best price quotation for swaps, bridges and token transfers.
+**Github**: https://github.com/SabeloMkhwanzi/defilux
+
+**We're hitting these blockers...** At The moment fine
+Public URL: https://showcase.ethglobal.com/hackmoney2022/defilux-89ror
+
 Listed here:
 
 1. Swing.xyz

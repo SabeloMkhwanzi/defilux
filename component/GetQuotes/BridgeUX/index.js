@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import {
   Button,
   Select,
@@ -10,6 +11,7 @@ import {
   InputRightElement,
   Box,
   Text,
+  // Image,
 } from "@chakra-ui/react";
 
 export default function BridgeUX({ getQuotes, params, setParams }) {
@@ -29,13 +31,12 @@ export default function BridgeUX({ getQuotes, params, setParams }) {
           {/* ---- FROM ADDRESS ---- */}
 
           <Box
-            borderWidth={0}
             maxWidth={600}
             borderRadius="2xl"
             px={7}
             py={7}
             my="3%"
-            mx="auto"
+            mx="10"
             bgColor={BridgeUX}
             shadow="2xl"
           >
@@ -176,7 +177,7 @@ export default function BridgeUX({ getQuotes, params, setParams }) {
                 </option>
                 <option
                   id="USDT"
-                  value="0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+                  value="0xdAC17F958D2ee523a2206206994597C13D831ec7"
                 >
                   USDT
                 </option>
