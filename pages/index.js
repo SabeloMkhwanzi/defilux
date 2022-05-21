@@ -1,6 +1,5 @@
 import { Box } from "@chakra-ui/react";
 import Head from "next/head";
-import GetSwapTransfer from "../component/GetSwapTransfer";
 import GetQuotes from "../component/GetQuotes";
 import Navbar from "../component/Navbar";
 
@@ -14,7 +13,6 @@ function Home() {
       </Head>
       <Navbar />
       <GetQuotes />
-      {/* <GetSwapTransfer /> */}
     </Box>
   );
 }

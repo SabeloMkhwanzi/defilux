@@ -36,7 +36,7 @@ export default function QuoteResult(items) {
   return (
     <Box
       borderWidth={0}
-      maxWidth="600"
+      maxWidth="800"
       borderRadius="2xl"
       px={2}
       py={2}
@@ -46,7 +46,7 @@ export default function QuoteResult(items) {
     >
       <Stack
         direction={{ base: "column" }}
-        maxWidth="600"
+        maxWidth="800"
         bg={BridgeUX}
         shadow="lg"
         borderRadius={20}

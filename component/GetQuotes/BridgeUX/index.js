@@ -24,6 +24,15 @@ export default function BridgeUX({ getQuotes, params, setParams }) {
   const BridgeUX = useColorModeValue("blue.500", "blue.500");
   const GetQuotButtonColorMode = useColorModeValue("gray.600", "#303E46");
 
+  var formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
+
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   return (
     <Box>
       <form onSubmit={getQuotes}>
@@ -31,11 +40,10 @@ export default function BridgeUX({ getQuotes, params, setParams }) {
           {/* ---- FROM ADDRESS ---- */}
 
           <Box
-            maxWidth={600}
+            maxWidth={700}
             borderRadius="2xl"
             px={7}
             py={7}
-            my="3%"
             mx="10"
             bgColor={BridgeUX}
             shadow="2xl"
@@ -261,9 +269,15 @@ export default function BridgeUX({ getQuotes, params, setParams }) {
                 </Select>
 
                 <Input
+                  color="gray.400"
+                  textAlign="center"
                   bg={InputBgColorMode}
                   variant="filled"
-                  // placeholder={value}
+                  placeholder={
+                    params.tokenAmount
+                      ? formatter.format(params.tokenAmount).split(".")[0]
+                      : "$0.0"
+                  }
                   height={12}
                 />
 

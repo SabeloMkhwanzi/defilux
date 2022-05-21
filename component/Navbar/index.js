@@ -65,7 +65,7 @@ function Navbar() {
       <Button w="full" variant="ghost" leftIcon={<AiFillHome />}>
         Bridge Quote
       </Button>
-      <Button
+      {/* <Button
         w="full"
         variant="solid"
         colorScheme="brand"
@@ -75,7 +75,7 @@ function Navbar() {
       </Button>
       <Button w="full" variant="ghost" leftIcon={<BsFillCameraVideoFill />}>
         Videos
-      </Button>
+      </Button> */}
     </VStack>
   );
 
@@ -99,12 +99,27 @@ function Navbar() {
             justifyContent="space-between"
           >
             <Flex align="flex-start">
-              <Link href="/">
-                <HStack>{/* <Logo /> */}</HStack>
-              </Link>
+              <HStack spacing={0}>
+                <Text
+                  fontWeight="bold"
+                  fontSize="5xl"
+                  fontFamily="monospace"
+                  letterSpacing={3}
+                >
+                  DEFI
+                </Text>
+                <Text
+                  fontFamily="sans-serif"
+                  fontWeight="semibold"
+                  fontSize="2xl"
+                  letterSpacing={3}
+                >
+                  LUX
+                </Text>
+              </HStack>
             </Flex>
 
-            <Flex>
+            <Flex ml="40">
               <HStack spacing="5" display={{ base: "none", md: "flex" }}>
                 <Button
                   borderRadius="2xl"
@@ -116,7 +131,7 @@ function Navbar() {
                     <Text letterSpacing={3}>Bridge Quote</Text>
                   </Link>
                 </Button>
-                <Button
+                {/* <Button
                   borderRadius="2xl"
                   w="full"
                   variant="outlne"
@@ -135,7 +150,7 @@ function Navbar() {
                   <Link href="/">
                     <Text letterSpacing={3}>Home</Text>
                   </Link>
-                </Button>
+                </Button> */}
               </HStack>
             </Flex>
             <Spacer />

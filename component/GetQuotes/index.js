@@ -4,12 +4,16 @@ import { Box, Stack, Text, useColorModeValue } from "@chakra-ui/react";
 import BridgeUX from "./BridgeUX";
 import QuoteResult from "./QuotesResults";
 import { formatParams } from "utils";
+import CoinChart from "./CoinChart";
+import CoinEcosystem from "./CoinEcosystem";
 
 function GetQuotes() {
+  const BridgeColor = useColorModeValue("blue.500", "blue.500");
   const [items, setItems] = useState([]);
-  const InputTextColorMode = useColorModeValue("gray.900", "white");
+  const [assets, setAssets] = useState([]);
 
   console.log(items);
+  console.log(assets);
 
   const [params, setParams] = useState({
     fromUserAddress: "",
@@ -21,6 +25,16 @@ function GetQuotes() {
     toChain: "polygon",
     toChainId: 137,
   });
+
+  const getDexAssets = async (e) => {
+    const chain_id = e?.target.elements.chain_id.value;
+    e?.preventDefault();
+
+    const response = await axios.get(
+      `https://api.covalenthq.com/v1/${chain_id}/xy=k/sushiswap/ecosystem/?quote-currency=USD&format=JSON&key=ckey_4e73d56514984838ab3206fbaf4`
+    );
+    setAssets(response.data.data);
+  };
 
   const getQuotes = async (e) => {
     e?.preventDefault();
@@ -43,21 +57,55 @@ function GetQuotes() {
     }
   };
 
-  // "https://api.coincap.io/v2/assets/{tokenSymbol}/history?interval=d1";
-  // "https://api.covalenthq.com/v1/{toChain}/xy=k/sushiswap/ecosystem/?quote-currency=USD&format=JSON&key=${API_KEY}";
+  // const getKlaytnAssets = async (e) => {
+  //   const response = await axios.get(
+  //     "https://api.covalenthq.com/v1/1/xy=k/sushiswap/ecosystem/?quote-currency=USD&format=JSON&key=ckey_4e73d56514984838ab3206fbaf4"
+  //   );
+  //   setAssets(response.data.data);
+  // };
 
   useEffect(() => {
+    getDexAssets();
     getQuotes();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <Box>
-      <Stack direction="column">
-        <BridgeUX getQuotes={getQuotes} params={params} setParams={setParams} />
-        <QuoteResult data={items} />
+    <>
+      <Stack direction="row" pt={20} justifyContent="space-evenly">
+        <Box>
+          <Stack direction="column">
+            <BridgeUX
+              getQuotes={getQuotes}
+              params={params}
+              setParams={setParams}
+            />
+            <Box mx="auto" pt={12}>
+              <QuoteResult data={items} />
+            </Box>
+          </Stack>
+        </Box>
+        <Stack direction="column">
+          <Box
+            px={5}
+            ps={5}
+            py={5}
+            bg={BridgeColor}
+            rounded="md "
+            borderRadius="lg"
+            h="390px"
+            minWidth="500"
+            boxShadow="0px 5px 25px 0px rgba(0, 0, 0, .25);"
+            //bgColor="rgba(255, 0, 0, 0.1)"
+          >
+            <CoinChart />
+          </Box>
+          <Box pt={5}>
+            <CoinEcosystem />
+          </Box>
+        </Stack>
       </Stack>
-    </Box>
+    </>
   );
 }
 
