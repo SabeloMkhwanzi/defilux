@@ -19,6 +19,7 @@ And components of Defi are stablecoins, software, and hardware that enables the 
 2. DEX Prices: [Covalen](https://www.covalenthq.com/) - Covalent provides a unified API bringing visibility to billions of Web3 data points.
 3. Wallet Connect - [Unstoppable Domain](https://unstoppabledomains.com/) - Building decentralized digital identities for the world
 
+#### About this project
 - DefiLux - Is Cross-chain Defi DApp that enhances a great UX experience to help providing the best price quotation for swaps, bridges and token transfers.
 
 ### Tools
