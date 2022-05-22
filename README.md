@@ -26,7 +26,7 @@
 
 ##### 1. Home Page
 
-![HomePage](https://github.com/SabeloMkhwanzi/defilux/blob/main/public/defilux.jpg)
+![HomePage](https://github.com/SabeloMkhwanzi/defilux/blob/main/public/defiLuxHomePage1.jpg)
 
 #### Live website: [Defilux]()
 
