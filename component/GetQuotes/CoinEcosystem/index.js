@@ -23,38 +23,18 @@ function CoinEcosystem(assets) {
   };
 
   return (
-    <Box
-      bg={BridgeColor}
-      borderRadius="md"
-      minH="300"
-      minWidth="500"
-      boxShadow="0px 5px 25px 0px rgba(0, 0, 0, .25);"
-      mx="auto"
-    >
-      {assets.data.map((item) => (
-        <>
-          <SimpleGrid
-            columns={[1, null, 3]}
-            spacing={2}
-            mt={7}
-            key={item.chain_id}
-          >
-            <Box
-              w="md"
-              maxW="xs"
-              justifyContent="center"
-              my={10}
-              px={5}
-              ps={5}
-              py={1}
-            >
+    <Box>
+      <SimpleGrid columns={[1, null, 3]} spacing={2}>
+        {assets.data.map((item) => (
+          <>
+            <Box w="md" maxW="xs" justifyContent="center" key={item.chain_id}>
               <Box>
                 <Text
                   textAlign="center"
                   color={TextHeadingColorMode}
-                  fontSize="xl"
+                  fontSize="lg"
                   fontWeight="semibold"
-                  mt={5}
+                  mt={1}
                 >
                   Chain Id
                 </Text>
@@ -69,22 +49,14 @@ function CoinEcosystem(assets) {
                 </Text>
               </Box>
             </Box>
-            <Box
-              my={10}
-              w="md"
-              maxW="xs"
-              justifyContent="center"
-              px={5}
-              ps={5}
-              py={1}
-            >
+            <Box w="md" maxW="xs" justifyContent="center" px={5} ps={5} py={1}>
               <Box>
                 <Text
                   textAlign="center"
                   color={TextHeadingColorMode}
-                  fontSize="xl"
+                  fontSize="lg"
                   fontWeight="semibold"
-                  mt={5}
+                  mt={1}
                 >
                   Dex Name
                 </Text>
@@ -99,21 +71,13 @@ function CoinEcosystem(assets) {
                 </Text>
               </Box>
             </Box>
-            <Box
-              my={10}
-              w="md"
-              maxW="xs"
-              justifyContent="center"
-              px={5}
-              ps={5}
-              py={1}
-            >
+            <Box w="md" maxW="xs" justifyContent="center" px={5} ps={5} py={1}>
               <Box>
                 <Text
                   textAlign="center"
-                  fontSize="xl"
+                  fontSize="lg"
                   fontWeight="semibold"
-                  mt={5}
+                  mt={1}
                   color={TextHeadingColorMode}
                 >
                   Token Price Quote
@@ -125,20 +89,35 @@ function CoinEcosystem(assets) {
                   mt={2}
                   color={TextDataColor}
                 >
-                  {item.as_token_price_quote
-                    ? formatter.format(item.total_fees_24h).split(".")[0]
-                    : "null"}
+                  ${formatCash(item.gas_token_price_quote)}
                 </Text>
               </Box>
             </Box>
-          </SimpleGrid>
-          <SimpleGrid columns={[1, null, 3]} spacing={7} mt={7}>
-            <Box w="md" maxW="xs" justifyContent="center" px={5} ps={5} py={1}>
+          </>
+        ))}
+      </SimpleGrid>
+
+      <Box
+        bg={BridgeColor}
+        borderRadius="md"
+        minH="100"
+        minWidth="300"
+        boxShadow="0px 5px 25px 0px rgba(0, 0, 0, .25);"
+        mx="auto"
+      >
+        {assets.data.map((item) => (
+          <SimpleGrid
+            columns={[1, null, 3]}
+            spacing={7}
+            mt={1}
+            key={item.chain_id}
+          >
+            <Box w="md" maxW="xs" justifyContent="center" px={5} ps={5} py={5}>
               <Box>
                 <Text
                   textAlign="center"
                   color={TextHeadingColorMode}
-                  fontSize="xl"
+                  fontSize="lg"
                   fontWeight="semibold"
                 >
                   Total Fees (24h)
@@ -156,51 +135,51 @@ function CoinEcosystem(assets) {
                 </Text>
               </Box>
             </Box>
-            <Box w="md" maxW="xs" justifyContent="center" px={5} ps={5} py={1}>
+            <Box w="md" maxW="xs" justifyContent="center" px={5} ps={5} py={5}>
               <Box>
                 <Text
                   textAlign="center"
                   color={TextHeadingColorMode}
-                  fontSize="md"
+                  fontSize="lg"
                   fontWeight="semibold"
                 >
                   Total Swaps (24h)
                 </Text>
                 <Text
-                  textAlign="center"
-                  fontWeight="bold"
                   fontSize="xl"
                   mt={2}
+                  textAlign="center"
                   color={TextDataColor}
+                  fontWeight="bold"
                 >
                   {item.total_swaps_24h}
                 </Text>
               </Box>
             </Box>
-            <Box w="md" maxW="xs" justifyContent="center" px={5} ps={5} py={1}>
+            <Box w="md" maxW="xs" justifyContent="center" px={5} ps={5} py={5}>
               <Box>
                 <Text
                   textAlign="center"
                   color={TextHeadingColorMode}
-                  fontSize="xl"
+                  fontSize="lg"
                   fontWeight="semibold"
                 >
                   Total Active Pairs (7d)
                 </Text>
                 <Text
-                  textAlign="center"
-                  fontWeight="bold"
                   fontSize="xl"
                   mt={2}
+                  textAlign="center"
                   color={TextDataColor}
+                  fontWeight="bold"
                 >
                   {item.total_active_pairs_7d}
                 </Text>
               </Box>
             </Box>
           </SimpleGrid>
-        </>
-      ))}
+        ))}
+      </Box>
     </Box>
   );
 }

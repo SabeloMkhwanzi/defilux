@@ -34,7 +34,7 @@ export default function QuoteResult(items) {
   return (
     <Box
       borderWidth={0}
-      maxWidth="800"
+      minWidth="570"
       borderRadius="2xl"
       px={2}
       py={2}
@@ -42,13 +42,7 @@ export default function QuoteResult(items) {
       bgColor={BridgeUX}
       shadow="2xl"
     >
-      <Stack
-        direction={{ base: "column" }}
-        maxWidth="800"
-        bg={BridgeUX}
-        shadow="lg"
-        borderRadius={20}
-      >
+      <Stack direction={{ base: "column" }} bg={BridgeUX} shadow="lg">
         return (
         <Flex direction={{ base: "row", md: "column" }}>
           <SimpleGrid
@@ -65,8 +59,7 @@ export default function QuoteResult(items) {
             fontWeight="semibold"
           >
             <span>Bridge </span>
-            <span>Recevie</span>
-            {/* <span>bridge Fees</span> */}
+            <span>Receives</span>
             <span>duration</span>
           </SimpleGrid>
 
@@ -111,17 +104,7 @@ export default function QuoteResult(items) {
                     ? formatter.format(item.amount).split(".")[0]
                     : "null"}
                 </chakra.span>
-                {/* <chakra.span
-                  textOverflow="ellipsis"
-                  overflow="hidden"
-                  whiteSpace="nowrap"
-                >
-                  <Text color="red.500" fontSize="lg" isTruncated>
-                    {item.bridgeFee
-                      ? formatter.format(item.bridgeFee).split(".")[0]
-                      : "null"}
-                  </Text>
-                </chakra.span> */}
+
                 <chakra.span
                   textOverflow="ellipsis"
                   overflow="hidden"

@@ -53,7 +53,7 @@ const CoinChart = ({ liquid }) => {
   const liquidGraph = {
     datasets: [
       {
-        label: "liquidity 7d",
+        label: "7d liquidity Chart on Sushiswap Dex",
         yAxisID: "A",
         data: liquid,
         borderColor: "#06113C",

@@ -11,7 +11,6 @@ import {
   InputRightElement,
   Box,
   Text,
-  // Image,
 } from "@chakra-ui/react";
 
 export default function BridgeUX({ getQuotes, params, setParams }) {

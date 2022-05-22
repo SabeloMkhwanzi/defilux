@@ -11,7 +11,7 @@ import {
   VStack,
   Button,
   useColorMode,
-  Text,
+  Image,
   Spacer,
 } from "@chakra-ui/react";
 import { useViewportScroll } from "framer-motion";
@@ -82,40 +82,15 @@ function Navbar() {
             alignItems="center"
             justifyContent="space-between"
           >
-            <Flex align="flex-start">
-              <HStack spacing={0}>
-                <Text
-                  fontWeight="bold"
-                  fontSize="5xl"
-                  fontFamily="monospace"
-                  letterSpacing={3}
-                >
-                  DEFI
-                </Text>
-                <Text
-                  fontFamily="sans-serif"
-                  fontWeight="semibold"
-                  fontSize="2xl"
-                  letterSpacing={3}
-                >
-                  LUX
-                </Text>
-              </HStack>
+            <Flex justifyContent="center" my="8">
+              <Image width={180} src="/defiluxlogo.png" alt="defilux logo" />
             </Flex>
 
             <Flex ml="40">
-              <HStack spacing="5" display={{ base: "none", md: "flex" }}>
-                {/* <Button
-                  borderRadius="2xl"
-                  w="full"
-                  variant="outlne"
-                  color="#EEEEEE"
-                >
-                  <Link href="/">
-                    <Text letterSpacing={3}>Bridge Quote</Text>
-                  </Link>
-                </Button> */}
-              </HStack>
+              <HStack
+                spacing="5"
+                display={{ base: "none", md: "flex" }}
+              ></HStack>
             </Flex>
             <Spacer />
             <Flex justify="flex-end" align="center" color="gray.400">

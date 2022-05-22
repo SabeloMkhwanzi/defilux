@@ -22,8 +22,8 @@ function GetQuotes() {
     if (n >= 1e12) return +(n / 1e12).toFixed(1);
   };
 
-  console.log(items);
-  console.log(assets);
+  // console.log(items);
+  // console.log(assets);
 
   const [params, setParams] = useState({
     fromUserAddress: "",
@@ -37,7 +37,6 @@ function GetQuotes() {
   });
 
   const getDexAssets = async (e) => {
-    // const toChainId = e?.target.elements.toChainId.value;
     e?.preventDefault();
 
     const response = await fetch(
@@ -94,9 +93,23 @@ function GetQuotes() {
 
   return (
     <>
+      <Text
+        justifyContent="flex-start"
+        letterSpacing={1}
+        fontSize="lg"
+        fontWeight="semibold"
+        decoration="lightblue"
+        textTransform="uppercase"
+        mt={4}
+        mx={20}
+        color="Highlight"
+      >
+        A Cross-chain Defi DApp that enhances a great UX experience to help
+        provide the best price quotation for swaps, bridges and token transfers.
+      </Text>
       <Stack
         direction="row"
-        pt={20}
+        pt={10}
         justifyContent="space-evenly"
         minH="100vh"
         w="full"
@@ -106,7 +119,7 @@ function GetQuotes() {
             justifyContent="center"
             right={2}
             letterSpacing={1}
-            fontSize="xl"
+            fontSize="lg"
             fontWeight="semibold"
             decoration="lightblue"
             textTransform="uppercase"
@@ -131,7 +144,7 @@ function GetQuotes() {
             justifyContent="center"
             right={2}
             letterSpacing={1}
-            fontSize="xl"
+            fontSize="lg"
             fontWeight="semibold"
             decoration="lightblue"
             textTransform="uppercase"
@@ -154,18 +167,6 @@ function GetQuotes() {
             <CoinChart liquid={liquidGraph} />
           </Box>
           <Box pt={1}>
-            <Text
-              justifyContent="center"
-              right={2}
-              letterSpacing={1}
-              fontSize="xl"
-              fontWeight="semibold"
-              decoration="lightblue"
-              textTransform="uppercase"
-              pb="1"
-            >
-              To-Chain liquidity on Sushiswap Dex
-            </Text>
             <CoinEcosystem data={assets} />
           </Box>
         </Stack>

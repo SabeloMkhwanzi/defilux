@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import UAuth from "@uauth/js";
 import { Button, useColorModeValue } from "@chakra-ui/react";
 
@@ -25,7 +25,6 @@ function ConnectUNSD() {
   async function logOut() {
     uauth.logout();
     logout();
-    // setUauth();
   }
 
   function log() {
