@@ -38,7 +38,7 @@ And components of Defi are stablecoins, software, and hardware that enables the 
 
 #### GitHub Repository: [github.com/SabeloMkhwanazi](https://github.com/SabeloMkhwanzi/defilux)
 
-#### Demo video: [video]()
+#### Demo video: [video](https://youtu.be/ncj2uz6j5fY)
 
 #### Project Start: Date: 13 -22 May, 2022
 
