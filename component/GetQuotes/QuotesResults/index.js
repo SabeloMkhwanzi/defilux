@@ -98,7 +98,7 @@ export default function QuoteResult(items) {
                   textOverflow="ellipsis"
                   overflow="hidden"
                   whiteSpace="nowrap"
-                  color={InputTextColorMode}
+                  color="green"
                 >
                   {item.amount
                     ? formatter.format(item.amount).split(".")[0]
