@@ -1,9 +1,6 @@
-import { useState, useEffect } from "react";
 import { Box, SimpleGrid, Text, useColorModeValue } from "@chakra-ui/react";
-import axios from "axios";
 
-function CoinEcosystem() {
-  const [assets, setAssets] = useState([]);
+function CoinEcosystem(assets) {
   const BridgeColor = useColorModeValue("blue.500", "blue.500");
   const TextDataColor = useColorModeValue("gray.900", "gray.900");
   const TextHeadingColorMode = useColorModeValue("white", "white");
@@ -17,18 +14,13 @@ function CoinEcosystem() {
     return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
   }
 
-  // const getKlaytnAssets = async (e) => {
-  //   const response = await axios.get(
-  //     "https://api.covalenthq.com/v1/1/xy=k/sushiswap/ecosystem/?quote-currency=USD&format=JSON&key=ckey_4e73d56514984838ab3206fbaf4"
-  //   );
-  //   setAssets(response.data.data);
-  // };
-
-  // useEffect(() => {
-  //   getKlaytnAssets();
-  //   assets;
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  const formatCash = (n) => {
+    if (n < 1e3) return n;
+    if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1);
+    if (n >= 1e6 && n < 1e9) return +(n / 1e6).toFixed(1);
+    if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1);
+    if (n >= 1e12) return +(n / 1e12).toFixed(1);
+  };
 
   return (
     <Box
@@ -39,148 +31,176 @@ function CoinEcosystem() {
       boxShadow="0px 5px 25px 0px rgba(0, 0, 0, .25);"
       mx="auto"
     >
-      {/* {console.log(assets)} */}
-      <SimpleGrid columns={[1, null, 3]} spacing={2} mt={7}>
-        <Box
-          w="md"
-          maxW="xs"
-          justifyContent="center"
-          my={10}
-          px={5}
-          ps={5}
-          py={1}
-        >
-          <Box>
-            <Text
-              textAlign="center"
-              color={TextHeadingColorMode}
-              fontSize="md"
-              fontWeight="semibold"
-              mt={5}
+      {assets.data.map((item) => (
+        <>
+          <SimpleGrid
+            columns={[1, null, 3]}
+            spacing={2}
+            mt={7}
+            key={item.chain_id}
+          >
+            <Box
+              w="md"
+              maxW="xs"
+              justifyContent="center"
+              my={10}
+              px={5}
+              ps={5}
+              py={1}
             >
-              Chain Id
-            </Text>
-            <Text
-              fontSize="lg"
-              mt={2}
-              textAlign="center"
-              color={TextDataColor}
-              fontWeight="bold"
+              <Box>
+                <Text
+                  textAlign="center"
+                  color={TextHeadingColorMode}
+                  fontSize="xl"
+                  fontWeight="semibold"
+                  mt={5}
+                >
+                  Chain Id
+                </Text>
+                <Text
+                  fontSize="xl"
+                  mt={2}
+                  textAlign="center"
+                  color={TextDataColor}
+                  fontWeight="bold"
+                >
+                  {item.chain_id}
+                </Text>
+              </Box>
+            </Box>
+            <Box
+              my={10}
+              w="md"
+              maxW="xs"
+              justifyContent="center"
+              px={5}
+              ps={5}
+              py={1}
             >
-              {assets.chain_id}
-            </Text>
-          </Box>
-        </Box>
-        <Box
-          my={10}
-          w="md"
-          maxW="xs"
-          justifyContent="center"
-          px={5}
-          ps={5}
-          py={1}
-        >
-          <Box>
-            <Text
-              textAlign="center"
-              color={TextHeadingColorMode}
-              fontSize="md"
-              fontWeight="semibold"
-              mt={5}
+              <Box>
+                <Text
+                  textAlign="center"
+                  color={TextHeadingColorMode}
+                  fontSize="xl"
+                  fontWeight="semibold"
+                  mt={5}
+                >
+                  Dex Name
+                </Text>
+                <Text
+                  textAlign="center"
+                  fontWeight="bold"
+                  fontSize="xl"
+                  mt={2}
+                  color={TextDataColor}
+                >
+                  {item.dex_name}
+                </Text>
+              </Box>
+            </Box>
+            <Box
+              my={10}
+              w="md"
+              maxW="xs"
+              justifyContent="center"
+              px={5}
+              ps={5}
+              py={1}
             >
-              dex_name
-            </Text>
-            <Text
-              textAlign="center"
-              fontWeight="bold"
-              fontSize="lg"
-              mt={2}
-              color={TextDataColor}
-            >
-              {assets.dex_name}
-            </Text>
-          </Box>
-        </Box>
-        <Box
-          my={10}
-          w="md"
-          maxW="xs"
-          justifyContent="center"
-          px={5}
-          ps={5}
-          py={1}
-        >
-          <Box>
-            <Text
-              textAlign="center"
-              fontSize="md"
-              fontWeight="semibold"
-              mt={5}
-              color={TextHeadingColorMode}
-            >
-              Token Price Quote
-            </Text>
-            <Text
-              textAlign="center"
-              fontWeight="bold"
-              fontSize="lg"
-              mt={2}
-              color={TextDataColor}
-            >
-              {assets.as_token_price_quote
-                ? formatter.format(data.as_token_price_quote).split(".")[0]
-                : "null"}
-            </Text>
-          </Box>
-        </Box>
-      </SimpleGrid>
-
-      <SimpleGrid columns={[1, null, 3]} spacing={7} mt={7}>
-        <Box w="md" maxW="xs" justifyContent="center" px={5} ps={5} py={1}>
-          <Box>
-            <Text
-              textAlign="center"
-              color={TextHeadingColorMode}
-              fontSize="md"
-              fontWeight="semibold"
-            >
-              Total Fees (24h)
-            </Text>
-            <Text
-              fontSize="lg"
-              mt={2}
-              textAlign="center"
-              color={TextDataColor}
-              fontWeight="bold"
-            >
-              {assets.total_fees_24h
-                ? formatter.format(data.total_fees_24h).split(".")[0]
-                : "null"}
-            </Text>
-          </Box>
-        </Box>
-        <Box w="md" maxW="xs" justifyContent="center" px={5} ps={5} py={1}>
-          <Box>
-            <Text
-              textAlign="center"
-              color={TextHeadingColorMode}
-              fontSize="md"
-              fontWeight="semibold"
-            >
-              Total Swaps (24h)
-            </Text>
-            <Text
-              textAlign="center"
-              fontWeight="bold"
-              fontSize="lg"
-              mt={2}
-              color={TextDataColor}
-            >
-              {assets.total_swaps_24h}
-            </Text>
-          </Box>
-        </Box>
-      </SimpleGrid>
+              <Box>
+                <Text
+                  textAlign="center"
+                  fontSize="xl"
+                  fontWeight="semibold"
+                  mt={5}
+                  color={TextHeadingColorMode}
+                >
+                  Token Price Quote
+                </Text>
+                <Text
+                  textAlign="center"
+                  fontWeight="bold"
+                  fontSize="xl"
+                  mt={2}
+                  color={TextDataColor}
+                >
+                  {item.as_token_price_quote
+                    ? formatter.format(item.total_fees_24h).split(".")[0]
+                    : "null"}
+                </Text>
+              </Box>
+            </Box>
+          </SimpleGrid>
+          <SimpleGrid columns={[1, null, 3]} spacing={7} mt={7}>
+            <Box w="md" maxW="xs" justifyContent="center" px={5} ps={5} py={1}>
+              <Box>
+                <Text
+                  textAlign="center"
+                  color={TextHeadingColorMode}
+                  fontSize="xl"
+                  fontWeight="semibold"
+                >
+                  Total Fees (24h)
+                </Text>
+                <Text
+                  fontSize="xl"
+                  mt={2}
+                  textAlign="center"
+                  color={TextDataColor}
+                  fontWeight="bold"
+                >
+                  {item.total_fees_24h
+                    ? formatter.format(item.total_fees_24h).split(".")[0]
+                    : "null"}
+                </Text>
+              </Box>
+            </Box>
+            <Box w="md" maxW="xs" justifyContent="center" px={5} ps={5} py={1}>
+              <Box>
+                <Text
+                  textAlign="center"
+                  color={TextHeadingColorMode}
+                  fontSize="md"
+                  fontWeight="semibold"
+                >
+                  Total Swaps (24h)
+                </Text>
+                <Text
+                  textAlign="center"
+                  fontWeight="bold"
+                  fontSize="xl"
+                  mt={2}
+                  color={TextDataColor}
+                >
+                  {item.total_swaps_24h}
+                </Text>
+              </Box>
+            </Box>
+            <Box w="md" maxW="xs" justifyContent="center" px={5} ps={5} py={1}>
+              <Box>
+                <Text
+                  textAlign="center"
+                  color={TextHeadingColorMode}
+                  fontSize="xl"
+                  fontWeight="semibold"
+                >
+                  Total Active Pairs (7d)
+                </Text>
+                <Text
+                  textAlign="center"
+                  fontWeight="bold"
+                  fontSize="xl"
+                  mt={2}
+                  color={TextDataColor}
+                >
+                  {item.total_active_pairs_7d}
+                </Text>
+              </Box>
+            </Box>
+          </SimpleGrid>
+        </>
+      ))}
     </Box>
   );
 }

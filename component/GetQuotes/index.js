@@ -11,6 +11,16 @@ function GetQuotes() {
   const BridgeColor = useColorModeValue("blue.500", "blue.500");
   const [items, setItems] = useState([]);
   const [assets, setAssets] = useState([]);
+  const [liquidGraph, setLiquidGraph] = useState([]);
+  const [volumeGraph, setVolumeGraph] = useState([]);
+
+  const formatCash = (n) => {
+    if (n < 1e3) return n;
+    if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1);
+    if (n >= 1e6 && n < 1e9) return +(n / 1e6).toFixed(1);
+    if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1);
+    if (n >= 1e12) return +(n / 1e12).toFixed(1);
+  };
 
   console.log(items);
   console.log(assets);
@@ -27,13 +37,30 @@ function GetQuotes() {
   });
 
   const getDexAssets = async (e) => {
-    const chain_id = e?.target.elements.chain_id.value;
+    // const toChainId = e?.target.elements.toChainId.value;
     e?.preventDefault();
 
-    const response = await axios.get(
-      `https://api.covalenthq.com/v1/${chain_id}/xy=k/sushiswap/ecosystem/?quote-currency=USD&format=JSON&key=ckey_4e73d56514984838ab3206fbaf4`
+    const response = await fetch(
+      `https://api.covalenthq.com/v1/${params.toChainId}/xy=k/sushiswap/ecosystem/?quote-currency=USD&format=JSON&key=ckey_4e73d56514984838ab3206fbaf4`
     );
-    setAssets(response.data.data);
+    const data = await response.json();
+    setAssets(data.data.items);
+    setLiquidGraph(
+      data.data.items[0].liquidity_chart_7d
+        .map((item) => ({
+          x: new Date(item.dt).toLocaleDateString(),
+          y: formatCash(item.liquidity_quote),
+        }))
+        .reverse()
+    );
+    setVolumeGraph(
+      data.data.items[0].volume_chart_7d
+        .map((item) => ({
+          x: new Date(item.dt).toLocaleDateString(),
+          y: formatCash(item.volume_quote),
+        }))
+        .reverse()
+    );
   };
 
   const getQuotes = async (e) => {
@@ -57,23 +84,36 @@ function GetQuotes() {
     }
   };
 
-  // const getKlaytnAssets = async (e) => {
-  //   const response = await axios.get(
-  //     "https://api.covalenthq.com/v1/1/xy=k/sushiswap/ecosystem/?quote-currency=USD&format=JSON&key=ckey_4e73d56514984838ab3206fbaf4"
-  //   );
-  //   setAssets(response.data.data);
-  // };
-
   useEffect(() => {
     getDexAssets();
     getQuotes();
+    liquidGraph;
+    volumeGraph;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
-      <Stack direction="row" pt={20} justifyContent="space-evenly">
+      <Stack
+        direction="row"
+        pt={20}
+        justifyContent="space-evenly"
+        minH="100vh"
+        w="full"
+      >
         <Box>
+          <Text
+            justifyContent="center"
+            right={2}
+            letterSpacing={1}
+            fontSize="xl"
+            fontWeight="semibold"
+            decoration="lightblue"
+            textTransform="uppercase"
+            pb="4"
+          >
+            Cross-Chain Bridge Explorer
+          </Text>
           <Stack direction="column">
             <BridgeUX
               getQuotes={getQuotes}
@@ -85,7 +125,20 @@ function GetQuotes() {
             </Box>
           </Stack>
         </Box>
+
         <Stack direction="column">
+          <Text
+            justifyContent="center"
+            right={2}
+            letterSpacing={1}
+            fontSize="xl"
+            fontWeight="semibold"
+            decoration="lightblue"
+            textTransform="uppercase"
+            pb="4"
+          >
+            To-Chain liquidity on Sushiswap Dex
+          </Text>
           <Box
             px={5}
             ps={5}
@@ -98,10 +151,22 @@ function GetQuotes() {
             boxShadow="0px 5px 25px 0px rgba(0, 0, 0, .25);"
             //bgColor="rgba(255, 0, 0, 0.1)"
           >
-            <CoinChart />
+            <CoinChart liquid={liquidGraph} />
           </Box>
-          <Box pt={5}>
-            <CoinEcosystem />
+          <Box pt={1}>
+            <Text
+              justifyContent="center"
+              right={2}
+              letterSpacing={1}
+              fontSize="xl"
+              fontWeight="semibold"
+              decoration="lightblue"
+              textTransform="uppercase"
+              pb="1"
+            >
+              To-Chain liquidity on Sushiswap Dex
+            </Text>
+            <CoinEcosystem data={assets} />
           </Box>
         </Stack>
       </Stack>

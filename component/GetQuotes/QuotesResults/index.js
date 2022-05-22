@@ -12,9 +12,7 @@ import {
 export default function QuoteResult(items) {
   const BridgeUX = useColorModeValue("blue.500", "blue.500");
   const InputBgColorMode = useColorModeValue("blue.100", "gray.700");
-  const TextInputColorMode = useColorModeValue("gray.900", "gray.900 ");
   const InputTextColorMode = useColorModeValue("gray.900", "white");
-  const ChainTextColorMode = useColorModeValue("blue.500", "blue.500");
 
   const formatCash = (n) => {
     if (n < 1e3) return n;
@@ -67,7 +65,7 @@ export default function QuoteResult(items) {
             fontWeight="semibold"
           >
             <span>Bridge </span>
-            <span>Amount</span>
+            <span>Recevie</span>
             {/* <span>bridge Fees</span> */}
             <span>duration</span>
           </SimpleGrid>
@@ -94,7 +92,12 @@ export default function QuoteResult(items) {
                 as="button"
               >
                 <Stack direction="row" bg={InputBgColorMode}>
-                  <Text textAlign="center" isTruncated fontSize="lg">
+                  <Text
+                    textAlign="center"
+                    isTruncated
+                    fontSize="lg"
+                    color={InputTextColorMode}
+                  >
                     {item.bridge}
                   </Text>
                 </Stack>
@@ -102,6 +105,7 @@ export default function QuoteResult(items) {
                   textOverflow="ellipsis"
                   overflow="hidden"
                   whiteSpace="nowrap"
+                  color={InputTextColorMode}
                 >
                   {item.amount
                     ? formatter.format(item.amount).split(".")[0]
@@ -122,7 +126,7 @@ export default function QuoteResult(items) {
                   textOverflow="ellipsis"
                   overflow="hidden"
                   whiteSpace="nowrap"
-                  color="green.500"
+                  color={InputTextColorMode}
                 >
                   {item.duration} ~ 10 min
                 </chakra.span>

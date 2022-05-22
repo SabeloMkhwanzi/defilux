@@ -16,24 +16,20 @@ import {
 } from "@chakra-ui/react";
 import { useViewportScroll } from "framer-motion";
 
-import { AiFillHome, AiOutlineInbox, AiOutlineMenu } from "react-icons/ai";
-import { BsFillCameraVideoFill } from "react-icons/bs";
+import { AiFillHome, AiOutlineMenu } from "react-icons/ai";
 import { FaMoon, FaSun } from "react-icons/fa";
-
-//import { Logo } from "../../public"
+import ConnectUNSD from "component/ConnectUNSD/index";
 
 function Navbar() {
   const { toggleColorMode: toggleMode } = useColorMode();
   const text = useColorModeValue("dark", "light");
   const SwitchIcon = useColorModeValue(FaMoon, FaSun);
-  const BgNarbar = useColorModeValue("blue.500", "gray.900");
+  const BgNarbar = useColorModeValue("blue.500", "#343A40");
   const ref = React.useRef();
   const [y, setY] = React.useState(0);
   const { height = 0 } = ref.current ? ref.current.getBoundingClientRect() : {};
 
   // Color mode hooks
-  const ButtonColorMode1 = useColorModeValue("gray.600", "#303E46");
-
   const { scrollY } = useViewportScroll();
   React.useEffect(() => {
     return scrollY.onChange(() => setY(scrollY.get()));
@@ -55,7 +51,6 @@ function Navbar() {
       bg={BgNarbar}
       spacing={3}
       rounded="sm"
-      shadow="sm"
     >
       <CloseButton
         aria-label="Close menu"
@@ -65,17 +60,6 @@ function Navbar() {
       <Button w="full" variant="ghost" leftIcon={<AiFillHome />}>
         Bridge Quote
       </Button>
-      {/* <Button
-        w="full"
-        variant="solid"
-        colorScheme="brand"
-        leftIcon={<AiOutlineInbox />}
-      >
-        Inbox
-      </Button>
-      <Button w="full" variant="ghost" leftIcon={<BsFillCameraVideoFill />}>
-        Videos
-      </Button> */}
     </VStack>
   );
 
@@ -83,12 +67,12 @@ function Navbar() {
     <React.Fragment>
       <chakra.header
         ref={ref}
-        shadow="xl"
         transition="box-shadow 0.2s"
         bg={BgNarbar}
         borderTopColor="brand.400"
         w="full"
         overflowY="hidden"
+        shadow="md"
       >
         <chakra.div h="4.5rem" mx="auto" maxW="1200px">
           <Flex
@@ -121,7 +105,7 @@ function Navbar() {
 
             <Flex ml="40">
               <HStack spacing="5" display={{ base: "none", md: "flex" }}>
-                <Button
+                {/* <Button
                   borderRadius="2xl"
                   w="full"
                   variant="outlne"
@@ -130,58 +114,13 @@ function Navbar() {
                   <Link href="/">
                     <Text letterSpacing={3}>Bridge Quote</Text>
                   </Link>
-                </Button>
-                {/* <Button
-                  borderRadius="2xl"
-                  w="full"
-                  variant="outlne"
-                  color="#EEEEEE"
-                >
-                  <Link href="/">
-                    <Text letterSpacing={3}>Home</Text>
-                  </Link>
-                </Button>
-                <Button
-                  borderRadius="2xl"
-                  w="full"
-                  variant="outlne"
-                  color="#EEEEEE"
-                >
-                  <Link href="/">
-                    <Text letterSpacing={3}>Home</Text>
-                  </Link>
                 </Button> */}
               </HStack>
             </Flex>
             <Spacer />
             <Flex justify="flex-end" align="center" color="gray.400">
               <HStack spacing="5" display={{ base: "none", md: "flex" }}>
-                <Button
-                  colorScheme="#EEEEEE"
-                  variant="solid"
-                  w="4xs"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  fontSize={{ base: "md", md: "lg" }}
-                  cursor="pointer"
-                  color="#EEEEEE"
-                >
-                  Sign in
-                </Button>
-                <Button
-                  color="blue.300"
-                  w="4xs"
-                  bg={ButtonColorMode1}
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  fontSize={{ base: "md", md: "lg" }}
-                  cursor="pointer"
-                  shadow="xl"
-                >
-                  Connect Wallet
-                </Button>
+                <ConnectUNSD />
               </HStack>
               <IconButton
                 size="md"

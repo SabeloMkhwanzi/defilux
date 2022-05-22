@@ -2,7 +2,7 @@ import React from "react";
 import { Chart as ChartJS } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 
-const CoinChart = ({ data }) => {
+const CoinChart = ({ liquid }) => {
   const options = {
     responsive: true,
     maintainAspectRatio: false,
@@ -10,9 +10,9 @@ const CoinChart = ({ data }) => {
       legend: {
         position: "top",
         labels: {
-          color: "#738598",
+          color: "#06113C",
           font: {
-            size: 14,
+            size: 17,
           },
           margin: "20px",
         },
@@ -24,7 +24,7 @@ const CoinChart = ({ data }) => {
         type: "linear",
         position: "left",
         ticks: {
-          color: "#FC770A",
+          color: "white",
           callback: function (value, index, values) {
             if (parseInt(value) >= 1000) {
               return (
@@ -36,35 +36,33 @@ const CoinChart = ({ data }) => {
           },
         },
       },
-      B: {
-        type: "linear",
-        position: "right",
-        ticks: {
-          color: "#00AF91",
-          max: 1,
-          min: 0,
-        },
-      },
+
       x: {
         ticks: {
-          color: "#738598",
+          color: "black",
+          font: {
+            weight: "bold",
+            font: {
+              size: 15,
+            },
+          },
         },
       },
     },
   };
-  const volumeWeighted = {
+  const liquidGraph = {
     datasets: [
       {
-        label: "Volume Weighted 1 day ($) ",
+        label: "liquidity 7d",
         yAxisID: "A",
-        data: data,
-        borderColor: "#00AF91",
-        backgroundColor: "#00AF91",
+        data: liquid,
+        borderColor: "#06113C",
+        backgroundColor: "#06113C",
       },
     ],
   };
 
-  return <Line options={options} data={volumeWeighted} />;
+  return <Line options={options} data={liquidGraph} />;
 };
 
 export default CoinChart;
