@@ -7,12 +7,15 @@ import { formatParams } from "utils";
 import CoinChart from "./CoinChart";
 import CoinEcosystem from "./CoinEcosystem";
 
+const API_KEY = process.env.REACT_APP_COVALENT_API;
+
 function GetQuotes() {
   const BridgeColor = useColorModeValue("blue.500", "blue.500");
   const [items, setItems] = useState([]);
   const [assets, setAssets] = useState([]);
   const [liquidGraph, setLiquidGraph] = useState([]);
   const [volumeGraph, setVolumeGraph] = useState([]);
+  const [loader, setLoader] = useState([]);
 
   const formatCash = (n) => {
     if (n < 1e3) return n;
@@ -38,9 +41,9 @@ function GetQuotes() {
 
   const getDexAssets = async (e) => {
     e?.preventDefault();
-
+    setLoader(true);
     const response = await fetch(
-      `https://api.covalenthq.com/v1/${params.toChainId}/xy=k/sushiswap/ecosystem/?quote-currency=USD&format=JSON&key=ckey_4e73d56514984838ab3206fbaf4`
+      `https://api.covalenthq.com/v1/${params.toChainId}/xy=k/sushiswap/ecosystem/?quote-currency=USD&format=JSON&key=${API_KEY}`
     );
     const data = await response.json();
     setAssets(data.data.items);
@@ -64,7 +67,7 @@ function GetQuotes() {
 
   const getQuotes = async (e) => {
     e?.preventDefault();
-
+    setLoader(true);
     try {
       const { data } = await axios.get(
         `https://swap.dev.swing.xyz/v0/transfer/quote?${formatParams(params)}`
@@ -77,6 +80,7 @@ function GetQuotes() {
       }));
 
       return setItems(items);
+      setLoader(false);
     } catch (error) {
       console.error(error);
       return setItems([]);
@@ -162,7 +166,6 @@ function GetQuotes() {
             h="390px"
             minWidth="500"
             boxShadow="0px 5px 25px 0px rgba(0, 0, 0, .25);"
-            //bgColor="rgba(255, 0, 0, 0.1)"
           >
             <CoinChart liquid={liquidGraph} />
           </Box>
