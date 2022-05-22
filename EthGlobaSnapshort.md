@@ -19,6 +19,8 @@ And components of Defi are stablecoins, software, and hardware that enables the 
 
 In this hackathon, I'm be contributing to by building a Defi tooling DApp that provides price quotes for swaps, bridges, and token transfers, by using the products and tools that have been developed by sponsors in this hackathon:
 
+Building a Project themed to HackedMoney using the tools provided by the sponsor
+
 Here's our team's second check-in!
 
 **Name**: DEFILUX
