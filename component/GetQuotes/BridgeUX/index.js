@@ -280,7 +280,7 @@ export default function BridgeUX({ getQuotes, params, setParams }) {
                   height={12}
                 />
 
-                {/* to Token Symbol  */}
+                {/* get quote  */}
               </Stack>
               <Button
                 left="78%"
