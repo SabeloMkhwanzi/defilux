@@ -66,7 +66,7 @@ Create a .env file in the root folder and populate it with the following variabl
 
 ```
 
-REACT_APP_COVALENT_API=
+NEXT_PUBLIC_COVALENT_APIKEY=
 
 ```
 
