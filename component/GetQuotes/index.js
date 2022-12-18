@@ -7,8 +7,7 @@ import { formatParams } from "utils";
 import CoinChart from "./CoinChart";
 import CoinEcosystem from "./CoinEcosystem";
 
-const API_KEY = "ckey_4e73d56514984838ab3206fbaf4";
-//const API_KEY = process.env.REACT_APP_COVALENT_API;
+const API_KEY = process.env.NEXT_PUBLIC_COVALENT_APIKEY;
 
 function GetQuotes() {
   const BridgeColor = useColorModeValue("blue.500", "blue.500");
