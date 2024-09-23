@@ -34,16 +34,6 @@ And components of Defi are stablecoins, software, and hardware that enables the 
 
 ![HomePage](https://github.com/SabeloMkhwanzi/defilux/blob/main/public/defiLuxHomePage1.jpg)
 
-#### Live website: [Defilux](https://defilux.vercel.app/)
-
-#### GitHub Repository: [github.com/SabeloMkhwanazi](https://github.com/SabeloMkhwanzi/defilux)
-
-#### Demo video: [video](https://youtu.be/ncj2uz6j5fY)
-
-#### Project Start: Date: 13 -22 May, 2022
-
-#### Wallet Address : 0xF975206a46b4eD9f5F008AF9813B19bf083d94eE
-
 #### Running the app
 
 ### Getting Started
